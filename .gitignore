@@ -1,0 +1,20 @@
+node_modules
+dist
+.env
+.env.*
+!.env.example
+artifacts
+cache
+typechain-types
+
+# not for the public repo: third-party reference pages, skills, working notes, concept art, QA output
+UI-reference/
+revisi/
+rekomendasi-maskot/
+.hallmark/
+.qa/
+.shots/
+reports.md
+PLAN.md
+project-context.txt
+submission/

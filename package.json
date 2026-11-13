@@ -1,0 +1,41 @@
+{
+  "name": "bot-pulse",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:testnet": "hardhat run scripts/deploy.cjs --network botTestnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.cjs --network botMainnet",
+    "abi": "node scripts/export-abi.cjs",
+    "test:unit": "node --test src/lib/metrics.test.js src/lib/mood.test.js"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "ethers": "^6.17.0",
+    "gsap": "^3.15.1",
+    "html-to-image": "^1.11.13",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^6.1.2",
+    "@vitejs/plugin-react": "^6.3.0",
+    "autoprefixer": "^10.6.2",
+    "dotenv": "^18.0.10",
+    "hardhat": "^2.29.1",
+    "postcss": "^8.5.32",
+    "puppeteer-core": "^25.17.0",
+    "tailwindcss": "^3.4.19",
+    "vite": "^8.3.7"
+  },
+  "engines": {
+    "node": ">=20.19"
+  }
+}

@@ -1,0 +1,8 @@
+export const fmtInt = (n) => (n == null ? 'n/a' : Math.round(n).toLocaleString('en-US'))
+export const fmtFixed = (n, d = 2) => (n == null || Number.isNaN(n) ? 'n/a' : Number(n).toFixed(d))
+export const fmtSec = (n) => (n == null ? 'n/a' : `${n.toFixed(2)}s`)
+export const fmtMs = (n) => (n == null ? 'n/a' : `${Math.round(n)} ms`)
+export const fmtPct = (n) => (n == null ? 'n/a' : `${n.toFixed(1)}%`)
+export const fmtGwei = (g) => (g == null ? 'n/a' : `${g.gwei < 10 ? g.gwei.toFixed(2) : g.gwei.toFixed(1)} gwei`)
+export const fmtBot = (b) => (b == null ? 'n/a' : `${b < 0.001 ? b.toExponential(2) : b.toFixed(5)} BOT`)
+export const shortHash = (a) => (a ? `${a.slice(0, 6)}…${a.slice(-4)}` : '')

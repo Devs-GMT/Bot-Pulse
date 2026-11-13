@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs>
+<radialGradient id="g1" cx=".2" cy=".1" r=".9"><stop offset="0" stop-color="#FF6B4A" stop-opacity=".22"/><stop offset="1" stop-color="#FF6B4A" stop-opacity="0"/></radialGradient>
+<radialGradient id="g2" cx=".9" cy=".95" r=".8"><stop offset="0" stop-color="#2EE6C5" stop-opacity=".16"/><stop offset="1" stop-color="#2EE6C5" stop-opacity="0"/></radialGradient>
+<filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+<filter id="blur2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="6"/></filter>
+<filter id="n" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0"/></filter>
+<clipPath id="tile"><rect width="512" height="512" rx="112"/></clipPath>
+</defs>
+<g clip-path="url(#tile)"><rect width="512" height="512" fill="#050506"/><rect width="512" height="512" fill="url(#g1)"/><rect width="512" height="512" fill="url(#g2)"/><rect width="512" height="512" filter="url(#n)" opacity=".09"/>
+<g transform="translate(256 262) scale(0.78) translate(-228 -277)"><path d="M58 382 H138 L174 432 L216 122 H304 C398 122 398 296 304 296 H196" fill="none" stroke="#FF6B4A" stroke-width="128" stroke-linecap="round" stroke-linejoin="round" /><path d="M58 382 H138 L174 432 L216 122 H304 C398 122 398 296 304 296 H196" fill="none" stroke="#050506" stroke-width="108" stroke-linecap="round" stroke-linejoin="round" /><path d="M58 382 H138 L174 432 L216 122 H304 C398 122 398 296 304 296 H196" fill="none" stroke="#FF6B4A" stroke-width="90" stroke-linecap="round" stroke-linejoin="round" /><path d="M58 382 H138 L174 432 L216 122 H304 C398 122 398 296 304 296 H196" fill="none" stroke="#050506" stroke-width="70" stroke-linecap="round" stroke-linejoin="round" /><path d="M58 382 H138 L174 432 L216 122 H304 C398 122 398 296 304 296 H196" fill="none" stroke="#2EE6C5" stroke-width="54" stroke-linecap="round" stroke-linejoin="round" /><path d="M58 382 H138 L174 432 L216 122 H304 C398 122 398 296 304 296 H196" fill="none" stroke="#050506" stroke-width="34" stroke-linecap="round" stroke-linejoin="round" /><path d="M58 382 H138 L174 432 L216 122 H304 C398 122 398 296 304 296 H196" fill="none" stroke="#2EE6C5" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" /></g>
+</g>
+</svg>

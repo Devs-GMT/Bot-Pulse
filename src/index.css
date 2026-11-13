@@ -1,0 +1,121 @@
+/* Hallmark · shape: Node Graph · genre: modern-minimal · theme: brand (BOT Pulse PRD palette) · redesign: full
+ * paper: oklch(0.12 0.003 285) · accent: oklch(0.7 0.18 38) · display: General Sans · body: Inter · hero: Stage · nav: dense balanced bar · footer: ECG monitor · signature: a live node graph, BOT Chain at the centre, a pulse travelling each connector on every block
+ * axes: dark/grotesk-sans/warm · posture: Stage · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: S, the dashboard tiles are still a grid; the tiles now differ in span and the lead tile carries the block-time chart */
+/* Hallmark · waive 80 · labelled live diagram, four labelled nodes · the node graph is a diagram of what BOT Pulse reads, drawn from live chain data, not decoration */
+/* Hallmark · waive 44c · the node graph section opens at 677px, 223px above the fold of a 900px screen · the hero is the headline and the graph is its second half, as in the V7 Context Graph page, so the first screen shows the headline and the live graph together */
+/* Hallmark · waive 59 · gap between hero text and graph is 80px, the graph begins under the headline on the first screen · headline and graph read as one composition, and every other section gap on the page is 257px or more */
+/* Hallmark · dropped /app?view=testnet, scan.botchain.ai contract links · the network switcher shows one network link at a time and the most active contracts change with every block */
+@import "./tokens.css";
+@import "./base.css" layer(base);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { background: var(--color-paper); }
+/* grid items may shrink below their content, so nothing pushes the page wider than the screen */
+.grid > * { min-width: 0; }
+.num { font-family: var(--font-outlier); font-variant-numeric: tabular-nums; }
+.label { font-size: var(--text-sm); color: var(--color-muted); }
+.h-muted { color: var(--color-muted); }
+
+@layer components {
+  /* surfaces: one thin visible border, 8px radius, never a card inside a card */
+  .panel { color: var(--color-ink); background: var(--color-paper-2); border: var(--rule-hair) solid var(--color-rule); border-radius: var(--radius-card); }
+
+  /* pill controls: ink-filled primary, outlined secondary */
+    .btn, .btn-line { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-xs); min-height: 48px; padding: 0 var(--space-lg); border-radius: var(--radius-pill); font-size: var(--text-md); font-weight: 500; white-space: nowrap; cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), transform var(--dur-micro) var(--ease-out); }
+  .btn { background: var(--color-ink); color: var(--color-paper); border: 1px solid var(--color-ink); }
+  .btn:hover { background: color-mix(in oklab, var(--color-ink) 82%, var(--color-accent)); }
+  .btn-line { background: transparent; color: var(--color-ink); border: 1px solid var(--color-rule); }
+  .btn-line:hover { border-color: var(--color-muted); background: var(--color-paper-2); }
+  .btn:active, .btn-line:active { transform: scale(0.98); }
+  .btn:disabled, .btn-line:disabled { background: var(--color-paper-3); color: var(--color-muted); border-color: var(--color-rule); cursor: not-allowed; transform: none; }
+  .btn-sm { min-height: 36px; padding: 0 var(--space-md); font-size: var(--text-sm); }
+
+  /* segmented control */
+  .seg { display: inline-flex; border: 1px solid var(--color-rule); border-radius: var(--radius-pill); padding: var(--space-2xs); }
+  .seg button { min-height: 36px; padding: 0 var(--space-md); border: 1px solid transparent; border-radius: var(--radius-pill); background: transparent; color: var(--color-muted); font-size: var(--text-sm); cursor: pointer; transition: background-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out); }
+  .seg button:hover { color: var(--color-ink); }
+  .seg button[aria-pressed='true'] { background: var(--color-paper-3); color: var(--color-ink); border-color: var(--color-muted); }
+  .seg-lg button { min-height: 44px; font-size: var(--text-md); padding: 0 var(--space-lg); }
+
+  .input { width: 100%; min-height: 48px; padding: 0 var(--space-md); background: var(--color-paper); color: var(--color-ink); border: 1px solid var(--color-rule); border-radius: var(--radius-card); transition: border-color var(--dur-short) var(--ease-out); }
+  .input:hover { border-color: var(--color-muted); }
+  .input:disabled { background: var(--color-paper-3); color: var(--color-muted); cursor: not-allowed; }
+
+  /* rows with a hover that lights the border, V7 style */
+  .row-link { border-top: 1px solid var(--color-rule); transition: background-color var(--dur-short) var(--ease-out); }
+  .row-link:hover { background: var(--color-paper-2); }
+}
+
+/* node graph connectors and pulses */
+@keyframes flow { to { stroke-dashoffset: -24; } }
+.flow-line { stroke: var(--color-muted); stroke-opacity: 0.55; stroke-width: 1.25; stroke-dasharray: 4 8; fill: none; animation: flow 1.6s linear infinite; }
+.anchor { background: var(--color-accent); box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-accent) 22%, transparent); }
+
+/* ticker */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee { animation: marquee 70s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+
+/* footer logo beat: transform only */
+@keyframes heartbeat { 0% { transform: scale(1); } 20% { transform: scale(1.2); } 40% { transform: scale(1); } 55% { transform: scale(1.1); } 100% { transform: scale(1); } }
+.heartbeat { animation: heartbeat 0.7s var(--ease-out); }
+
+/* scroll reveal: visible by default, only hidden once the script marks the page */
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
+.js .reveal.in { opacity: 1; transform: none; }
+
+/* accordion body: animates grid rows (not height), closed content is not focusable */
+.faq-body { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows var(--dur-long) var(--ease-out), visibility 0s linear var(--dur-long); }
+.faq-body[data-open='true'] { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows var(--dur-long) var(--ease-out); }
+
+/* faint dot grid behind the hero, fading toward the edges */
+.dotgrid::before { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: radial-gradient(color-mix(in oklab, var(--color-muted) 38%, transparent) 1px, transparent 1.5px); background-size: 28px 28px; -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, var(--color-ink) 20%, transparent 75%); mask-image: radial-gradient(ellipse 70% 65% at 50% 45%, var(--color-ink) 20%, transparent 75%); }
+.dotgrid > * { position: relative; }
+
+/* loading: three pulsing dots after a word */
+@keyframes dot { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+.dots::after { content: '...'; letter-spacing: 1px; animation: dot 1.2s ease-in-out infinite; }
+
+/* interactive tiles lift 2px on hover (transform only) */
+.lift { transition: transform var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out); }
+.lift:hover { transform: translateY(-2px); }
+@media (prefers-reduced-motion: reduce) { .lift:hover { transform: none; } }
+
+/* minimal hover glow, V7 style: the border warms to the accent, nothing more */
+.glow { position: relative; isolation: isolate; transition: border-color var(--dur-short) var(--ease-out), box-shadow var(--dur-short) var(--ease-out); }
+.glow:hover { border-color: color-mix(in oklab, var(--color-accent) 55%, var(--color-rule)); box-shadow: 0 0 22px color-mix(in oklab, var(--color-accent) 12%, transparent); }
+/* a soft highlight that follows the pointer; --mx and --my are set in lib/spotlight.js */
+.glow::before { content: ''; position: absolute; inset: 0; z-index: -1; border-radius: inherit; pointer-events: none; opacity: 0; background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), color-mix(in oklab, var(--color-ink) 7%, transparent), transparent 70%); transition: opacity var(--dur-short) var(--ease-out); }
+.glow:hover::before { opacity: 1; }
+a, summary, [role='button'] { cursor: pointer; }
+
+/* the larger tab control must fit a 320px screen: tighter padding below 40rem */
+.seg { max-width: 100%; }
+.seg-lg button { padding-inline: var(--space-md); }
+@media (min-width: 40rem) { .seg-lg button { padding-inline: var(--space-lg); } }
+
+.flow-line.hot { stroke: var(--color-accent); stroke-opacity: 1; stroke-width: 2; }
+
+/* control room hero: people breathe, nodes glow, monitors light on hover */
+@keyframes breathe { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
+.breathe { animation: breathe 3.6s ease-in-out infinite; }
+@keyframes halo { 0%, 100% { opacity: 0.18; } 50% { opacity: 0.45; } }
+.node-halo { animation: halo 2.4s ease-in-out infinite; }
+.mon { cursor: pointer; outline: none; }
+.mon .screen { transition: stroke var(--dur-short) var(--ease-out); }
+.mon:hover .screen, .mon:focus-visible .screen { stroke: var(--color-accent); }
+@media (prefers-reduced-motion: reduce) { .breathe, .node-halo { animation: none; } }
+
+/* control room people: heads turn toward the pointer, raised arms appear on hover and click */
+.look { transform-box: fill-box; transform-origin: 50% 100%; transition: transform 0.25s var(--ease-out); }
+.arm { opacity: 0; transition: opacity 0.2s var(--ease-out); transform-box: fill-box; transform-origin: 0% 100%; }
+.arm.on { opacity: 1; }
+@keyframes wave { from { transform: rotate(-9deg); } to { transform: rotate(11deg); } }
+@keyframes jump { 0%, 100% { transform: translateY(0); } 35% { transform: translateY(-10px); } 60% { transform: translateY(0); } 80% { transform: translateY(-5px); } }
+.jump { animation: jump 0.9s ease-out 2; }
+@keyframes bubbleIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.bubble { animation: bubbleIn 0.25s var(--ease-out); }
+@media (prefers-reduced-motion: reduce) { .jump, .bubble { animation: none; } .arm { animation: none !important; } .look { transition: none; } }

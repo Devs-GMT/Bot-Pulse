@@ -1,0 +1,7 @@
+// Writes the compiled PinBoard ABI to src/lib/abis.js (run after `npx hardhat compile`)
+const fs = require('fs')
+const path = require('path')
+const art = require('../artifacts/contracts/PinBoard.sol/PinBoard.json')
+const out = path.join(__dirname, '..', 'src', 'lib', 'abis.js')
+fs.writeFileSync(out, `export const PINBOARD_ABI = ${JSON.stringify(art.abi, null, 2)}\n`)
+console.log('ABI written to', out)

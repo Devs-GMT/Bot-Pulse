@@ -1,0 +1,4 @@
+/* General Sans (Fontshare, free for commercial use), self-hosted so it loads from our own origin
+   and can be embedded in the snapshot PNG. Inter and IBM Plex Mono come from @fontsource (see main.jsx). */
+@font-face { font-family: "General Sans"; font-weight: 500; font-style: normal; font-display: swap; src: url("./general-sans-500.woff2") format("woff2"); }
+@font-face { font-family: "General Sans"; font-weight: 600; font-style: normal; font-display: swap; src: url("./general-sans-600.woff2") format("woff2"); }
